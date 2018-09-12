@@ -91,7 +91,7 @@ class SingleLinkList(object):
             while count < (pos - 1):
                 count += 1
                 cur = cur.next
-            # 属性修改
+            # 属性修改  # 当前cur为更改位置前一个元素, 修改属性
             node.next = cur.next  # 一定要在 cur.next = node 之前
             cur.next = node  # 承上启下
 
