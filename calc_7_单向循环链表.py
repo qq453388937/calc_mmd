@@ -108,7 +108,7 @@ class SingleCircleList(object):
             node.next = cur.next  # 一定要在 cur.next = node 之前
             cur.next = node  # 承上启下
 
-    def remove(self,  item):
+    def remove(self, item):
         """ 单向循环链表删除元素(最复杂情况考虑) """
         if self.is_empty():
             return False  # 元素不存在删除失败
@@ -117,7 +117,7 @@ class SingleCircleList(object):
             pre = None
             # count = 0
             while cur.next is not self.__head:
-                if cur.item == item:   # 循环内匹配上删除的
+                if cur.item == item:  # 循环内匹配上删除的
                     if cur == self.__head:  # 正好是头结点,头部删除,需再次循环找到尾结点
                         tail_node = self.__head
                         while tail_node.next is not self.__head:

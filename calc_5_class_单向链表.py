@@ -96,7 +96,7 @@ class SingleLinkList(object):
             cur.next = node  # 承上启下
 
     def remove(self, item):
-
+        """ 单向链表删除 """
         if self.is_empty():
             return False  # 删除失败
         else:
