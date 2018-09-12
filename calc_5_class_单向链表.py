@@ -125,6 +125,8 @@ if __name__ == '__main__':
     lian = SingleLinkList()
     lian.add(1)
     lian.add(2)
+    lian.add(3)
+    lian.add(4)
     # lian.append(3123123)
     # print(lian.is_empty())
     # print(lian.length())
