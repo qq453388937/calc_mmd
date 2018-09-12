@@ -118,7 +118,7 @@ class SingleCircleList(object):
             # count = 0
             while cur.next is not self.__head:
                 if cur.item == item:   # 循环内匹配上删除的
-                    if cur == self.__head:  # 正好是头结点,头部删除
+                    if cur == self.__head:  # 正好是头结点,头部删除,需再次循环找到尾结点
                         tail_node = self.__head
                         while tail_node.next is not self.__head:
                             tail_node = tail_node.next
