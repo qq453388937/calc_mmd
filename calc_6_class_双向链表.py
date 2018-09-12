@@ -85,7 +85,7 @@ class DoubleLinkList(object):
             node = BaseNode(item)
             cur = self.__head
             count = 0
-
+            # 写法1 #
             # while count < pos:
             #     count += 1
             #     cur = cur.next
@@ -95,42 +95,37 @@ class DoubleLinkList(object):
             # cur.pre = node  # cur.pre = node一定要在node.pre = cur.pre之后!
             # node.next = cur
 
-            # #
+            # 写法2 #
             while cur is not None:
                 if count == pos:
-                    cur.pre.next = node
-                    node.pre = cur.pre
-                    cur.pre = node
-                    node.next = cur
+                    cur.pre.next = node  # 插入位置的上一结点 是当前新的结点
+                    node.pre = cur.pre   # 当前结点的上一节点是旧的cur的上一结点
+                    cur.pre = node       # cur的上一节点(即将成为node的下一节点)是node
+                    node.next = cur      # node的下一节点是cur
                     return True  # or break 操作完毕无需继续循环
                 count += 1
                 cur = cur.next
 
-    def insert2(self, pos, item):
-        if pos <= 0:
-            self.add(item)
-        elif pos >= self.length():
-            self.append(item)
-        else:  # 中间
-            node = BaseNode(item)
+    def remove(self, item):
+
+        if self.is_empty():
+            return False  # 无需删除,删除失败
+        else:  # 双向列表非空
             cur = self.__head
-            count = 0
-            # while count < pos:
-            #     count += 1
-            #     cur = cur.next
-            # cur.pre.next = node
-            # node.pre = cur.pre
-            # cur.pre = node
-            # node.next = cur
             while cur is not None:
-                if count == pos:
-                    cur.pre.next = node
-                    node.pre = cur.pre
-                    cur.pre = node
-                    node.next = cur
-                    return True
-                count += 1
-                cur = cur.next
+                if cur.item == item:  # 找到删除项目
+                    if cur == self.__head:  # 删头
+                        self.__head = cur.next
+                        if cur.next:
+                            cur.next.pre = None
+                    else:             # 删中间和删尾部
+                        cur.pre.next = cur.next  # 上个元素的next指向下一个元素
+                        if cur.next is not None:
+                            cur.next.pre = cur.pre   # 下一个元素的pre指向上一个元素
+                    return True  # 删除成功
+                cur = cur.next   # 常规移动
+
+            return False  # 一个匹配的也没找到删除失败
 
 
 
@@ -141,8 +136,9 @@ if __name__ == '__main__':
     ll.add(2)
     ll.add(1)
     ll.append(333)
-    ll.insert2(4, 123999)
+    ll.insert(4, 123999)
     print(ll.is_empty())
     print(ll.length())
+    ll.remove(123999)
     ll.travel()
     pass
