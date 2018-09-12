@@ -125,8 +125,7 @@ class DoubleLinkList(object):
                     return True  # 删除成功
                 cur = cur.next  # 常规移动
 
-            return False  # 一个匹配的也没找到删除失败
-
+            return False  # 一个匹配的也没找到删除失败!
 
 
 if __name__ == '__main__':
