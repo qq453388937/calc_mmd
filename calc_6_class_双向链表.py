@@ -25,7 +25,7 @@ class DoubleLinkList(object):
             count = 0
             while cur is not None:
                 count = count + 1
-                cur = cur.next   # 常规操作
+                cur = cur.next  # 常规操作
             return count
 
     def travel(self):
@@ -100,14 +100,14 @@ class DoubleLinkList(object):
                 if count == pos:
                     cur.pre.next = node  # 插入位置的上一结点 是当前新的结点
                     node.pre = cur.pre  # 当前结点的上一节点是旧的cur的上一结点
-                    cur.pre = node  # cur的上一节点(即将成为node的下一节点)是node
+                    cur.pre = node  # cur的上一节点(即将成为node的下一节点)是node  # cur.pre = node一定要在node.pre = cur.pre之后!
                     node.next = cur  # node的下一节点是cur
                     return True  # or break 操作完毕无需继续循环
                 count += 1
                 cur = cur.next
 
     def remove(self, item):
-
+        """ 双向链表删除指定元素 """
         if self.is_empty():
             return False  # 无需删除,删除失败
         else:  # 双向列表非空
@@ -119,11 +119,14 @@ class DoubleLinkList(object):
                         if cur.next is not None:  # 第二个元素不是最后一个元素的情况,如果第二个元素是最后一个元素,cur.pre.next 默认为None
                             cur.next.pre = None  # 新头元素pre为None
                     else:  # 删中间和删尾部
-                        cur.pre.next = None  # 删除尾部(很关键容易漏掉该情况) else情况提前
-                        if cur.next is not None:  # 常规中间删除
+                        # cur.pre.next = None  # 删除尾部(很关键容易漏掉该情况) else情况提前
+                        if cur.next is not None:  # 肯定在中间,左右都有元素
                             cur.pre.next = cur.next  # 上个元素的next指向下一个元素
                             cur.next.pre = cur.pre  # 下一个元素的pre指向上一个元素
+                        else:  # 删除尾部(很关键容易漏掉该情况)
+                            cur.pre.next = None  # 因为双向链表尾结点next 是None
                     return True  # 删除成功
+
                 cur = cur.next  # 常规移动
 
             return False  # 一个匹配的也没找到删除失败!
@@ -133,10 +136,10 @@ if __name__ == '__main__':
     ll = DoubleLinkList()
     # ll.add(2)
     ll.add(1)
-    # ll.append(333)
-    # ll.insert(4, 123)
-    # print(ll.is_empty())
-    # print(ll.length())
+    ll.append(333)
+    ll.insert(4, 123)
+    print(ll.is_empty())
+    print(ll.length())
     ll.remove(1)
     ll.travel()
     pass
