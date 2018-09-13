@@ -25,7 +25,7 @@ class DoubleLinkList(object):
             count = 0
             while cur is not None:
                 count = count + 1
-                cur = cur.next
+                cur = cur.next   # 常规操作
             return count
 
     def travel(self):
@@ -119,7 +119,7 @@ class DoubleLinkList(object):
                         if cur.next is not None:  # 第二个元素不是最后一个元素的情况,如果第二个元素是最后一个元素,cur.pre.next 默认为None
                             cur.next.pre = None  # 新头元素pre为None
                     else:  # 删中间和删尾部
-                        cur.pre.next = None  # 删除尾部(很关键容易漏掉该情况)
+                        cur.pre.next = None  # 删除尾部(很关键容易漏掉该情况) else情况提前
                         if cur.next is not None:  # 常规中间删除
                             cur.pre.next = cur.next  # 上个元素的next指向下一个元素
                             cur.next.pre = cur.pre  # 下一个元素的pre指向上一个元素
@@ -131,12 +131,12 @@ class DoubleLinkList(object):
 
 if __name__ == '__main__':
     ll = DoubleLinkList()
-    ll.add(2)
+    # ll.add(2)
     ll.add(1)
-    ll.append(333)
-    ll.insert(4, 123)
-    print(ll.is_empty())
-    print(ll.length())
-    ll.remove(2)
+    # ll.append(333)
+    # ll.insert(4, 123)
+    # print(ll.is_empty())
+    # print(ll.length())
+    ll.remove(1)
     ll.travel()
     pass
