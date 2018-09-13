@@ -142,7 +142,7 @@ class SingleCircleList(object):
                 if cur == self.__head:
                     self.__head = None
                 else:
-                    pre.next = self.__head  # or cur.next 同理
+                    pre.next = self.__head   # or cur.next 同理
                 return True
             return False
 
