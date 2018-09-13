@@ -24,7 +24,6 @@ class SingleCircleList(object):
         count = 1
         while cur.next is not self.__head:
             """进入循环统计元素个数"""
-            print(1)
             count += 1
             cur = cur.next  # 常规操作
         # 循环结束少加1个前面补偿进去,循环结束cur在尾结点上,or 最后循环外count+=1
@@ -34,7 +33,7 @@ class SingleCircleList(object):
         """ 输出单向循环链表 """
         if self.is_empty():
             print("空")
-            return True  # 输出成功
+            # return True  # 输出成功
         else:  # 单向链表不为空
             cur = self.__head
             while cur.next is not self.__head:
@@ -104,6 +103,7 @@ class SingleCircleList(object):
             count = 0
             while count < (pos - 1):
                 cur = cur.next
+                count += 1
             # 当前cur为更改位置前一个元素, 修改属性
             node.next = cur.next  # 一定要在 cur.next = node 之前
             cur.next = node  # 承上启下
@@ -125,8 +125,12 @@ class SingleCircleList(object):
                         # 修改属性
                         self.__head = cur.next
                         tail_node.next = self.__head
+                        """   写法2
+                             tail_node.next = cur.next
+                             self.__head = cur.next
+                        """
                     else:  # 中间删除
-                        pre.next = cur.next
+                        pre.next = cur.next  # 上一个元素next指向下一个元素
                     return True
                 # count += 1
                 pre = cur
@@ -138,7 +142,7 @@ class SingleCircleList(object):
                 if cur == self.__head:
                     self.__head = None
                 else:
-                    pre.next = self.__head
+                    pre.next = self.__head  # or cur.next 同理
                 return True
             return False
 
